@@ -22,6 +22,7 @@
       state: React.PropTypes.string,
       type: React.PropTypes.string,
       shouldAllowClickOnLoading: React.PropTypes.bool,
+      dontRemoveOnSuccess: React.PropTypes.bool
     },
 
     getDefaultProps: function() {
@@ -33,6 +34,7 @@
         onError: function() {},
         onSuccess: function() {},
         shouldAllowClickOnLoading: false,
+        dontRemoveOnSuccess: false
       };
     },
 
@@ -104,12 +106,13 @@
       this.setState({currentState: 'disabled'});
     },
 
-    success: function(callback, dontRemove) {
+    success: function(callback) {
+      var self = this;
       this.setState({currentState: 'success'});
       this._timeout = setTimeout(function() {
         callback = callback || this.props.onSuccess;
         callback();
-        if (dontRemove === true) { return; }
+        if (self.props.dontRemoveOnSuccess === true) { return; }
         this.setState({currentState: ''});
       }.bind(this), this.props.durationSuccess);
     },
@@ -126,7 +129,7 @@
     componentWillReceiveProps: function(nextProps) {
       switch(nextProps.state) {
         case 'success':
-          this.success();
+          this.success(null, true);
           return;
         case 'error':
           this.error();
