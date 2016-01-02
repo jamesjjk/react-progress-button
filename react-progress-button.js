@@ -109,10 +109,14 @@
     success: function(callback) {
       var self = this;
       this.setState({currentState: 'success'});
+
+      if (self.props.dontRemoveOnSuccess === true) {
+        return;
+      }
+
       this._timeout = setTimeout(function() {
         callback = callback || this.props.onSuccess;
         callback();
-        if (self.props.dontRemoveOnSuccess === true) { return; }
         this.setState({currentState: ''});
       }.bind(this), this.props.durationSuccess);
     },
