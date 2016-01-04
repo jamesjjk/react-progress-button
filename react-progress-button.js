@@ -82,6 +82,7 @@
     handleClick: function(e) {
       if ((this.props.shouldAllowClickOnLoading ||
           this.state.currentState !== 'loading') &&
+          this.state.currentState !== 'success' &&
           this.state.currentState !== 'disabled'
       ) {
         this.props.onClick(e);
