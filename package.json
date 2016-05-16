@@ -4,7 +4,7 @@
   "description": "Simple react.js component for a inline progress indicator",
   "main": "react-progress-button.js",
   "peerDependencies": {
-    "react": "0.x"
+    "react": "x.x"
   },
   "scripts": {},
   "repository": {
