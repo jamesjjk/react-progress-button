@@ -51,7 +51,9 @@
       var type = this.props.type;
       var form = this.props.form;
 
-      var containerProps = _objectWithoutProperties(this.props, ["classNamespace", "children", "type", "form", "durationError", "durationSuccess", "onClick", "onError", "state", "shouldAllowClickOnLoading"]);
+      var containerProps = _objectWithoutProperties(this.props, ["classNamespace", "children", "type", "form",
+        "durationError", "durationSuccess", "onClick", "onError", "state", "shouldAllowClickOnLoading",
+        "dontRemoveOnSuccess", "onSuccess"]);
       containerProps.className = classNamespace + "container " + this.state.currentState + ' ' + className;
       containerProps.onClick = this.handleClick;
       return (
